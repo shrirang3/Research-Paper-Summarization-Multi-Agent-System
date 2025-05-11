@@ -2,7 +2,7 @@ from langchain_groq import ChatGroq
 from langchain.prompts import ChatPromptTemplate
 from langchain.chains import LLMChain
 import os
-from search_rp import search_arxiv  # Assuming this function is defined in search_rp.py
+from .search_rp import search_arxiv  # Assuming this function is defined in search_rp.py
 
 from dotenv import load_dotenv
 import os
