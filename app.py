@@ -171,15 +171,16 @@ else:
             paper_number = st.number_input(
                 "Paper number to summarize",
                 min_value=1,
-                max_value=10,
-                value=3,
+                max_value=4,
+                value=1,
                 key="summary_length"
             )
+            st.session_state.paper_number = paper_number
             
             if st.button("Generate Summary"):
                 summarizer = ArxivSummarizerAgent()
                 #paper=papers[0]
-                st.session_state.summary = summarizer.summarize_paper(st.session_state.papers[0])
+                st.session_state.summary = summarizer.summarize_paper(st.session_state.papers[st.session_state.paper_number-1])
                 # if st.session_state.input_text:
                 #     st.session_state.summary = generate_summary(
                 #         st.session_state.input_text,
