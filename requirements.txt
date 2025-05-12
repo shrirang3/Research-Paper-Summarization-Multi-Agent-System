@@ -1,0 +1,14 @@
+langchain
+langchain-community
+langchain-groq
+langchain-text-splitters
+scikit-learn
+gtts
+faiss-cpu
+python-dotenv
+numpy
+transformers
+torch
+sentence-transformers
+PyMuPDF  # Required by PyPDFLoader internally
+streamlit
