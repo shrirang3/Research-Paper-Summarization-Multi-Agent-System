@@ -2,7 +2,7 @@ from langchain_groq import ChatGroq
 from langchain.prompts import ChatPromptTemplate
 from langchain.chains import LLMChain
 import os
-from .search_rp import search_arxiv  # Assuming this function is defined in search_rp.py
+#from .search_rp import search_arxiv  # Assuming this function is defined in search_rp.py
 
 from dotenv import load_dotenv
 import os
@@ -42,19 +42,25 @@ class ArxivSummarizerAgent:
 
 # Usage (ensure GROQ_API_KEY is set in environment)
 # Corrected environment variable access
-if __name__ == "__main__":
-    # Get API key from .env file
-    groq_api_key = os.getenv("GROQ_API_KEY")  # Use parentheses () not square brackets []
+# if __name__ == "__main__":
+#     # Get API key from .env file
+#     groq_api_key = os.getenv("GROQ_API_KEY")  # Use parentheses () not square brackets []
     
-    # Set up Groq
-    os.environ["GROQ_API_KEY"] = groq_api_key
+#     # Set up Groq
+#     os.environ["GROQ_API_KEY"] = groq_api_key
     
-    papers = search_arxiv("1706.03762")
-    
-    if papers:
-        summarizer = ArxivSummarizerAgent()
-        first_paper = papers[0]
+#     papers = search_arxiv("Deep learning")  # Example query
+#     if papers:
+#         print(f"Found {len(papers)} papers:\n")
+#         for idx, paper in enumerate(papers, 1):
+#             print(f"{idx}. {paper['title']}")
+#             print(f"Abstract: {paper['abstract'][:150]}...\n")  # Show first 150 chars
+#     else:
+#         print("No papers found.")
+#     if papers:
+#         summarizer = ArxivSummarizerAgent()
+#         first_paper = papers[1]
         
-        print("Paper Title:", first_paper['title'])
-        print("\nSummary:")
-        print(summarizer.summarize_paper(first_paper))
+#         print("Paper Title:", first_paper['title'])
+#         print("\nSummary:")
+#         print(summarizer.summarize_paper(first_paper))

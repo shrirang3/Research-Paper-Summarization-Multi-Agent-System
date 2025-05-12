@@ -31,7 +31,7 @@ def search_arxiv(query: str) -> list[dict]:
 
 # Example usage
 if __name__ == "__main__":
-    query = "1706.03762"  # Attention Is All You Need paper
+    query = "Deep Learning"  # Attention Is All You Need paper
     papers = search_arxiv(query)
     
     if papers:
