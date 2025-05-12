@@ -7,6 +7,12 @@ from agents.pdf_parser_summarizer import (
     initialize_deepseek_llm,
     create_rag_chain
 )
+from audio_utils import (
+    generate_podcast_script,
+    text_to_speech,
+    autoplay_audio,
+    cleanup_audio_files
+)
 
 from agents.search_rp import search_arxiv
 
@@ -15,17 +21,6 @@ from agents.classifier import ResearchPaperClassifier
 
 import tempfile
 import os
-
-papers=[]
-
-# Placeholder functions - replace with your actual implementations
-def generate_summary(text):
-    """Replace with your summary generation logic"""
-    return f"Generated summary for text of length {len(text)} characters"
-
-def classify_text(text, categories):
-    """Replace with your classification logic"""
-    return {"category": categories[0], "confidence": 0.95}
 
 
 # Initialize session state
@@ -121,9 +116,6 @@ if interface == "PDF Chat":
                     
                 except Exception as e:
                     st.error(f"Error generating response: {str(e)}")
-            
-            st.rerun()
-
 else:
     st.session_state.current_interface = "Text"
     
@@ -217,3 +209,52 @@ else:
             st.subheader("Classification Result")
             st.write(f"Category: {st.session_state.classification['category']}")
             st.write(f"Confidence: {st.session_state.classification['confidence']:.2f}")
+
+# Add this in your results section after summary and classification display
+if 'summary' in st.session_state and 'classification' in st.session_state:
+    st.divider()
+    st.subheader("🎧 Audio Podcast")
+    
+    col1, col2 = st.columns([1, 2])
+    
+    with col1:
+        if st.button("Generate Audio Summary"):
+            try:
+                # Generate podcast script
+                podcast_script = generate_podcast_script(
+                    st.session_state.summary,
+                    st.session_state.classification
+                )
+                
+                # Create audio file
+                podcast_file = text_to_speech(podcast_script)
+                st.session_state.podcast_generated = True
+                st.session_state.podcast_file = podcast_file
+                
+            except Exception as e:
+                st.error(f"Podcast generation failed: {str(e)}")
+    
+    if st.session_state.get('podcast_generated', False):
+        with col2:
+            st.markdown("### Podcast Controls")
+            
+            # Display audio player
+            st.audio(st.session_state.podcast_file, format="audio/mp3")
+            
+            # Auto-play toggle
+            auto_play = st.checkbox("Auto-play podcast")
+            if auto_play:
+                audio_html = autoplay_audio(st.session_state.podcast_file)
+                st.components.v1.html(audio_html, height=0)
+            
+            # Download button
+            with open(st.session_state.podcast_file, "rb") as f:
+                st.download_button(
+                    label="Download Podcast",
+                    data=f,
+                    file_name="research_podcast.mp3",
+                    mime="audio/mp3"
+                )
+            
+            # Cleanup when session ends
+            cleanup_audio_files(st.session_state.podcast_file)
