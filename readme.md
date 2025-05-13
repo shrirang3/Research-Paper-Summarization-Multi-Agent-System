@@ -1,7 +1,10 @@
 
 # Research Paper Summarization Multi Agent System 📝🚀
 
-This multi-agent system is an intelligent multi-agent system designed to automate the end-to-end summarization of research papers into engaging audio podcast summaries. It allows users to input academic papers via direct PDF upload, URL, or keyword-based ArXiv search. The system leverages state-of-the-art NLP models for document understanding, semantic chunking, and summarization. It then uses text-to-speech (TTS) technology to convert the textual summary into a clear, human-like audio narration.
+This multi-agent system is an intelligent multi-agent system designed to automate the end-to-end summarization of research papers into engaging audio podcast summaries. It allows users to input academic papers via direct PDF upload, URL, or keyword-based ArXiv search. The system leverages state-of-the-art NLP models for document understanding, semantic chunking, and summarization. It then uses text-to-speech (TTS) technology to convert the textual summary into a clear, human-like audio narration. 
+
+🖼️ **Results and UI screenshots** can be found in output folder.
+
 
 ## 🔑 Features
 
