@@ -37,7 +37,7 @@ This multi-agent system is an intelligent multi-agent system designed to automat
   
 2. **Clone repo and Install dependancies** 
     ```bash
-    git clone "https://github.com/shrirang3/Research-Paper-Summarization-Multi-Agent-System.git"
+    git clone https://github.com/shrirang3/Research-Paper-Summarization-Multi-Agent-System.git
     pip install -r requirements.txt
     ```
 
