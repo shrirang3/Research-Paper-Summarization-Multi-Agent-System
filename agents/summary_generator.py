@@ -13,6 +13,8 @@ class ArxivSummarizerAgent:
         self.summary_template = """You are a research paper summarization expert. 
         Create a structured summary of this paper with the following sections:
         1. Core Contribution (1 sentence)
+        2. Methodology (1-2 sentences)
+        3. Results (1-2 sentences)
 
         Paper Title: {title}
         Abstract: {abstract}"""
