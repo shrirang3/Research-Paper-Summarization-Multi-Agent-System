@@ -80,24 +80,24 @@ class ResearchPaperClassifier:
             "reasoning": reasoning
         }
 
-    # Traditional ML methods
-    def train_ml_model(self, X_train, y_train):
-        """Train on labeled data (text, labels)"""
-        text_data = [f"{title} {abstract}" for title, abstract in X_train]
-        X_vec = self.vectorizer.fit_transform(text_data)
-        self.model.fit(X_vec, y_train)
+    # # Traditional ML methods
+    # def train_ml_model(self, X_train, y_train):
+    #     """Train on labeled data (text, labels)"""
+    #     text_data = [f"{title} {abstract}" for title, abstract in X_train]
+    #     X_vec = self.vectorizer.fit_transform(text_data)
+    #     self.model.fit(X_vec, y_train)
 
-    def _ml_classify(self, title: str, abstract: str, keywords: list):
-        text = f"{title} {abstract} {' '.join(keywords)}"
-        X_vec = self.vectorizer.transform([text])
-        probas = self.model.predict_proba(X_vec)[0]
+    # def _ml_classify(self, title: str, abstract: str, keywords: list):
+    #     text = f"{title} {abstract} {' '.join(keywords)}"
+    #     X_vec = self.vectorizer.transform([text])
+    #     probas = self.model.predict_proba(X_vec)[0]
         
-        return {
-            "predictions": sorted([
-                {"category": cat, "probability": float(prob)}
-                for cat, prob in zip(self.categories, probas)
-            ], key=lambda x: x['probability'], reverse=True)
-        }
+    #     return {
+    #         "predictions": sorted([
+    #             {"category": cat, "probability": float(prob)}
+    #             for cat, prob in zip(self.categories, probas)
+    #         ], key=lambda x: x['probability'], reverse=True)
+    #     }
 
 # Usage Example
 if __name__ == "__main__":
